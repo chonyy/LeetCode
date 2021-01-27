@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=227 lang=cpp
+ * @lc app=leetcode id=224 lang=cpp
  *
- * [227] Basic Calculator II
+ * [224] Basic Calculator
  */
 
 // @lc code=start
@@ -11,7 +11,7 @@ public:
         stack<int> stk;
         char sign = '+';
         int n = s.size();
-        long res = 0, tmp = 0;
+        int res = 0, tmp = 0;
 
         for(int i = 0; i < n; i ++) {
             int curChar = s[i];
@@ -25,7 +25,7 @@ public:
                     stk.push(tmp);
                 }
                 else {
-                    long num ;
+                    int num ;
                     if(sign == '*') {
                         num = stk.top() * tmp;
                     }
