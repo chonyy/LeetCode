@@ -10,7 +10,7 @@ public:
     void backTrack(vector<vector<int>> &subs, vector<int> &sub, int i, vector<int> &nums) {
         subs.push_back(sub);
 
-        for(int j = i; j <= nums.size(); j ++) {
+        for(int j = i; j < nums.size(); j ++) {
             sub.push_back(nums[j]);
             backTrack(subs, sub, j+1, nums);
             sub.pop_back();
