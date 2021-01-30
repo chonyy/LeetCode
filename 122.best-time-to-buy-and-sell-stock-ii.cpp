@@ -8,12 +8,24 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
+        int i = 0;
+        int n = prices.size() - 1;
         int sum = 0;
-        int n = prices.size();
 
-        for(int i = 0; i < n; i ++) {
+        while(i < n) {
+            while(i < n && prices[i] >= prices[i+1])
+                i ++;
 
+            int buy = prices[i];
+
+            while(i < n && prices[i] < prices[i+1])
+                i ++;
+
+            int sell = prices[i];
+
+            sum += sell - buy;
         }
+
         return sum;
     }
 };
