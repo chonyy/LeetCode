@@ -15,8 +15,14 @@ public:
     }
     
     void push(int x) {
-        int min;
-        if(stk.length == 0)
+        int localMin;
+        if(stk.size() == 0) {
+            localMin = x;
+        }
+        else {
+            localMin = min(stk.back().second, x);
+        }
+        stk.push_back({x, localMin});
     }
     
     void pop() {
@@ -24,11 +30,11 @@ public:
     }
     
     int top() {
-        return stk.back.first();
+        return stk.back().first;
     }
     
     int getMin() {
-        return stk.back.second();
+        return stk.back().second;
     }
 };
 
