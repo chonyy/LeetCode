@@ -20,32 +20,31 @@ class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         int n = preorder.size();
-        return helper(0, 0, n-1, preorder, inorder);
+        TreeNode* res = helper(0, 0, n-1, preorder, inorder);
+        return res;
     }
 
-    TreeNode* helper(int preStart, int inStart, int inEnd, vector<int>& preorder, vector<int> &inorder) {
-        if(inStart > inEnd || preStart > preorder.size() - 1)
+    TreeNode* helper(int preStart, int inStart, int inEnd, vector<int>& preorder, vector<int>& inorder) {
+        int n = preorder.size();
+
+        if(n > preStart - 1 && inStart > inEnd)
             return nullptr;
 
         int val = preorder[preStart];
         TreeNode *root = new TreeNode(val);
 
         int inIdx;
-        for(int i = inStart; i <= inEnd; i ++) {
+        for(int i = 0; i < n; i ++) {
             if(inorder[i] == val) {
                 inIdx = i;
                 break;
             }
         }
 
-        root->left = helper(preStart + 1, inStart, inIdx-1, preorder, inorder);
-        root->right = helper(preStart + inIdx - inStart + 1, inIdx + 1, inEnd, preorder, inorder);
+        root->left = helper(preStart+1, inStart, inIdx-1, preorder, inorder);
+        root->right = helper(preStart + inIdx - inStart + 1, inIdx+1, inEnd, preorder, inorder);
 
         return root;
     }
 };
 // @lc code=end
-
-
-pre: [3, 9, 1, 20,15,7]
-in: [1,9,3,15,20,7]
