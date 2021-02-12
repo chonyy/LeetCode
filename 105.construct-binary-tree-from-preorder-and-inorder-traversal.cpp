@@ -18,31 +18,29 @@
  */
 class Solution {
 public:
+    int n;
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int n = preorder.size();
-        TreeNode* res = helper(0, 0, n-1, preorder, inorder);
-        return res;
+        n = inorder.size();
+        return build(0,0, n-1, preorder, inorder);
     }
 
-    TreeNode* helper(int preStart, int inStart, int inEnd, vector<int>& preorder, vector<int>& inorder) {
-        int n = preorder.size();
-
-        if(n > preStart - 1 && inStart > inEnd)
+    TreeNode* build(int preStart, int inStart, int inEnd, vector<int>& preOrder, vector<int>& inOrder) {
+        if(preStart < 0 || preStart >= n || inStart > inEnd)
             return nullptr;
 
-        int val = preorder[preStart];
-        TreeNode *root = new TreeNode(val);
-
+        int val = preOrder[preStart];
+        TreeNode* root = new TreeNode(val);
         int inIdx;
-        for(int i = 0; i < n; i ++) {
-            if(inorder[i] == val) {
+
+        for(int i = inStart; i <= inEnd; i ++) {
+            if(inOrder[i] == val) {
                 inIdx = i;
                 break;
             }
         }
 
-        root->left = helper(preStart+1, inStart, inIdx-1, preorder, inorder);
-        root->right = helper(preStart + inIdx - inStart + 1, inIdx+1, inEnd, preorder, inorder);
+        root->left = build(preStart+1, inStart, inIdx-1, preOrder, inOrder);
+        root->right = build(preStart + (inIdx-inStart+1), inIdx+1, inEnd, preOrder, inOrder);
 
         return root;
     }
