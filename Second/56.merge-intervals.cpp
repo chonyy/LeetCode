@@ -8,22 +8,25 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        int n = intervals.size();
         vector<vector<int>> res;
+
         sort(intervals.begin(), intervals.end());
+        res.push_back(intervals[0]);
+
+        int n = intervals.size();
 
         for(int i = 1; i < n; i ++) {
-            if(intervals[i][0] > intervals[i-1][1]) {
-                res.push_back(intervals[i-1]);
+            int prevEnd = res.back()[1];
+            int newStart = intervals[i][0];
+            int newEnd = intervals[i][1];
+            if(prevEnd >= newStart) {
+                if(newEnd > prevEnd)
+                    res.back()[1] = intervals[i][1];
             }
             else {
-                intervals[i][0] = intervals[i-1][0];
-                intervals[i][1] = max(intervals[i][1], intervals[i-1][1]);
+                res.push_back(intervals[i]);
             }
         }
-
-        res.push_back(intervals[n-1]);
-
         return res;
     }
 };
