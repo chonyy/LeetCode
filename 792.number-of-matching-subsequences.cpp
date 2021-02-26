@@ -7,35 +7,30 @@
 // @lc code=start
 class Solution {
 public:
-    unordered_map<char, vector<int>> m;
-    unordered_map<string, bool> cache;
     int numMatchingSubseq(string S, vector<string>& words) {
         int sum = 0;
+        vector<vector<int>> indexes(26);
 
         for(int i = 0; i < S.size(); i ++) {
-            m[S[i]].push_back(i);
+            char c = S[i];
+            indexes[c - 'a'].push_back(i);
         }
 
         for(string word : words) {
-            sum += check(S, word);
+            sum += check(S, word, indexes);
         }
+
         return sum;
     }
 
-    bool check(string s, string word) {
-        if(cache.count(word))
-            return cache[word];
+    bool check(string& s, string& word, vector<vector<int>>& indexes) {
         int cur = -1;
         for(char c : word) {
-            auto loc = m[c];
-            auto it = lower_bound(loc.begin(), loc.end(), cur+1);
-            if(it == loc.end()) {
-                cache[word] = false;
+            auto loc = lower_bound(indexes[c - 'a'].begin(), indexes[c - 'a'].end(), cur);
+            if(loc == indexes[c - 'a'].end())
                 return false;
-            }
-            cur = *it;
+            cur = *loc + 1;
         }
-        cache[word] = true;
         return true;
     }
 };
