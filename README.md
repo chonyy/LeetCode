@@ -1,3 +1,3 @@
-# Leetcode Practices
+# LeetCode Practices
 
-I hate leetcode :(
+I hate LeetCode :(
