@@ -1,3 +1,3 @@
-# Leetcode Practices
+# LeetCode Practices
 
-Written solutions for future reference.
+I hate LeetCode :(

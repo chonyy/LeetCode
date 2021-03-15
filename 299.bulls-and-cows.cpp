@@ -13,7 +13,7 @@ public:
 
         for(int i = 0; i < secret.size(); i ++) {
             char cs = secret[i];
-            char cg = guess[i];
+            char cg = guess [i];
             if(cs == cg) {
                 a ++;
             }
