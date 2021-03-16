@@ -11,6 +11,8 @@ public:
         // 1. push the asteroids to stack one by one
         // 2. if the rock is going right, push it directly into stack
         // 3. if the rock is going left, collide with the rocks in stack
+        //      3.1 if the stack is empty or the top rock is going left, push to stack
+        //      3.2 if the top rock is the same size, pop the top rock
         stack<int> rocks;
 
         for(int rock : asteroids) {
