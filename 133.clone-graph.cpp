@@ -28,21 +28,23 @@ public:
 
 class Solution {
 public:
-    unordered_set<Node*> walked;
+    unordered_map<Node*, Node*> copy;
     Node* cloneGraph(Node* node) {
-        Node* newNode = new Node(node->val);
-        walked.insert(node);
+        if(!node)
+            return node;
 
-        cout << newNode->val << endl;
-        for(auto no : node->neighbors) {
-            // if not walked
-            if(walked.find(node) != walked.end()) {
-                newNode->neighbors.push_back(cloneGraph(no));
-
+        // If we haven't seen this node
+        if(copy.find(node) == copy.end()) {
+            // Create a new copy and map it
+            copy[node] = new Node(node->val);
+            // Rum DFS on the unseen neighbors
+            for(auto no : node->neighbors) {
+                copy[node]->neighbors.push_back(cloneGraph(no));
             }
         }
 
-        return newNode;
+
+        return copy[node];
     }
 };
 // @lc code=end
