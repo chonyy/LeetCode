@@ -23,6 +23,7 @@ public:
         int weightSum = weights.back();
         int toFind = rand() % weightSum;
         auto it = upper_bound(weights.begin(), weights.end(), toFind);
+
         return it - weights.begin();
     }
 };
