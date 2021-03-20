@@ -1,18 +1,25 @@
-#include <iostream>
-#include <vector>
+# include<bits/stdc++.h>
 
 using namespace std;
 
-int main()
-{
-    vector<int> v;
+void solve(vector<int>& nums) {
+	for(int i : nums) {
+    	cout << i << endl;
+    }
+}
 
-    v.push_back(1);
-    v.push_back(2);
+int main() {
+    int n;
+    cin >> n;
+    vector<int> nums;
+    int temp;
 
-    for (auto i : v)
-    {
-        cout << i << endl;
+    while(n--) {
+        cin >> temp;
+        nums.push_back(temp);
     }
 
-    return 0;
+    solve(nums);
+
+    return 0; 
+}
