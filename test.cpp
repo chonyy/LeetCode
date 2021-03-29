@@ -2,25 +2,36 @@
 
 using namespace std;
 
-void bucketSort(vector<int>& arr) {
-    vector<int> bucket(11, 0);
-        for(int num : arr) {
-            bucket[num+5] ++;
-        }
+void solve(vector<int>& nums, int k) {
+    stack<pair<int, int>> stk;
+    vector<int> res;
 
-        int idx = 0;
-        for(int i = -5; i <= 5; i ++) {
-            while(bucket[i+5]--) {
-                arr[idx ++] = i;
-            }
+    for(int num : nums) {
+        if(!stk.empty() && num == stk.top().first) {
+            stk.top().second ++;
+            if(stk.top().second == k)
+                stk.pop();
         }
+        else {
+            stk.push({num, 1});
+        }
+    }
 
-        for(int num : arr)
-            cout << num << " ";
+    // We will have a cleaned stack now
+    while(!stk.empty()) {
+        res.insert(res.end(), stk.top().second, stk.top().first);
+        stk.pop();
+    }
+
+    reverse(res.begin(), res.end());
+    for(int r : res)
+        cout << r << " ";
 }
 
 int main() {
-    vector<int> arr = {3, 2, 5, 1, -5, 5, -2};
-    bucketSort(arr);
+    // 5 5 4 3
+    vector<int> arr = {5, 2, 3, 3, 3, 2, 1, 1, 1, 2, 5, 5, 4, 3};
+    int k = 3;
+    solve(arr, k);
     return 0; 
 }
