@@ -29,6 +29,11 @@ void solve(vector<string> lines) {
 
         // Start counting
         auto& problemEntry = contest[contestant][problem];
+<<<<<<< HEAD
+=======
+        if(problemEntry.first)
+            continue;
+>>>>>>> b8ae7f068a866f309bbc4f48dffd01824050c0a7
         if(L == 'C') {
             problemEntry.first = true;
             problemEntry.second += time;
@@ -85,6 +90,7 @@ int main()
     }
 }
 
+<<<<<<< HEAD
 // 2
 
 // 1 2 10 I
@@ -95,3 +101,5 @@ int main()
 
 // 1 2 10 I
 // 3 1 11 C
+=======
+>>>>>>> b8ae7f068a866f309bbc4f48dffd01824050c0a7
