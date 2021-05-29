@@ -2,6 +2,14 @@
     "files.associations": {
         "ostream": "cpp",
         "vector": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "utility": "cpp",
+        "queue": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "xhash": "cpp",
+        "xlocinfo": "cpp",
+        "xutility": "cpp",
+        "xiosbase": "cpp"
     }
 }
